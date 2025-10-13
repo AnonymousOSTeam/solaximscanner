@@ -55,6 +55,3 @@ int main() {
 
 
 
-<@991800782888370177>
-<@&1359432883961593896>
-Can anyone compile and test it?
