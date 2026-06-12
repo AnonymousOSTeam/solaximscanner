@@ -27,7 +27,6 @@ int scan_port(const char *ip, int port) {
     addr.sin_port = htons(port);
     inet_pton(AF_INET, ip, &addr.sin_addr);
 
-    // Set socket non-blocking
     flags = fcntl(sock, F_GETFL, 0);
     fcntl(sock, F_SETFL, flags | O_NONBLOCK);
 
@@ -38,7 +37,6 @@ int scan_port(const char *ip, int port) {
     timeout.tv_sec = TIMEOUT_SEC;
     timeout.tv_usec = 0;
 
-    // Wait for socket ready or timeout
     res = select(sock + 1, NULL, &fdset, NULL, &timeout);
     if (res == 1) {
         int so_error;
@@ -50,7 +48,7 @@ int scan_port(const char *ip, int port) {
         }
     }
     close(sock);
-    return 0; // Port closed or filtered
+    return 0;
 }
 
 int main() {
