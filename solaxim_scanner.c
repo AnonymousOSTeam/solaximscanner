@@ -44,7 +44,7 @@ int scan_port(const char *ip, int port) {
         getsockopt(sock, SOL_SOCKET, SO_ERROR, &so_error, &len);
         if (so_error == 0) {
             close(sock);
-            return 1; // Port open
+            return 1;
         }
     }
     close(sock);
